@@ -1,0 +1,28 @@
+.wrapper {
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    border-radius: 3px;
+    margin: .25em 0px;
+}
+
+.button {
+    margin-top: 1em;
+}
+
+.flash {
+    color: red;
+}

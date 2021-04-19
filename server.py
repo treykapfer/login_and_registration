@@ -34,6 +34,7 @@ def register_user():
 #VALIDATION
     is_valid = True
 #REGEX VALIDATION
+#checks validation from regex imported
     if not EMAIL_REGEX.match(request.form['email']):
         # test whether a field matches the pattern
         flash("Invalid email address!")
@@ -47,7 +48,8 @@ def register_user():
         flash("Invalid last name!")
         is_valid = False
 #FLASH VALIDATION
-# make sure you add the FLASH MESSAGE LOOPS to your HTML!!! you keep forgetting!!
+#basic if checks from flash
+#make sure you add the FLASH MESSAGE LOOPS to your HTML!!! you keep forgetting!!
     if len(request.form['first_name']) < 1:
         is_valid = False
         flash("Please enter a first name")
@@ -60,8 +62,9 @@ def register_user():
     if request.form['password'] != request.form['password_confirm']:
         is_valid = False
         flash("Your passwords did not match")
-# see if the username/email provided exists in the database already
-# query the db then check
+#QUERY DB VALIDATORS
+#see if the username/email provided exists in the database already
+#query the db then check
     mysql = connectToMySQL("login_reg_schema")
     query = "SELECT * FROM users;"
     data = { }
@@ -73,6 +76,7 @@ def register_user():
                 is_valid = False
                 flash("Email already taken")
                 break
+#VALIDATION COMPLETE            
 #IF VALID, CONNECT TO DB
     if is_valid:
         #FIRST CALL THE DB
@@ -98,8 +102,8 @@ def register_user():
 def login_user():
 #VALIDATION
 
-    # see if the username provided exists in the database
-    # query the db
+    #see if the username provided exists in the database
+    #query the db
     mysql = connectToMySQL("login_reg_schema")
     query = "SELECT * FROM users WHERE email = %(email)s;"
     data = { "email" : request.form["email_login"] }
